@@ -4,12 +4,12 @@
 Summary:	Library for easely creating diagrams
 Summary(pl):	Biblioteka do prostego tworzenia diagramów
 Name:		diacanvas
-Version:	0.14.1
+Version:	0.14.2
 Release:	1
 License:	GPL
 Group:		X11/Libraries
 Source0:	http://dl.sourceforge.net/diacanvas/%{src_name}-%{version}.tar.gz
-# Source0-md5:	4475435c068531c3c98781bcabb1e688
+# Source0-md5:	bd78fff277279abb003bb271baef3788
 Patch0:		%{name}-no_check.patch
 Patch1:		%{name}-text-stroke.patch
 URL:		http://diacanvas.sourceforge.net/
@@ -22,7 +22,7 @@ BuildRequires:	python-gnome-devel >= 2.0.0
 BuildRequires:	python-pygtk-devel >= 1:2.0.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define pydefsdir %(pkg-config --variable=defsdir pygtk-2.0)
+%define		pydefsdir	%(pkg-config --variable=defsdir pygtk-2.0)
 
 %description
 Library for easy diagrams creation.
