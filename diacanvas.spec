@@ -13,7 +13,7 @@ Group:		X11/Libraries
 Source0:	http://dl.sourceforge.net/sourceforge/%{name}/%{src_name}-%{version}.tar.gz
 # Source0-md5:	4142c787f582311d01ef6ec8c4fb3c13
 Patch0:		%{name}-python.patch
-URL:		http://diacanvas.sourceforge.net
+URL:		http://diacanvas.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libgnomeprintui-devel >= 1.116.0
