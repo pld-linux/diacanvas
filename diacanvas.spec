@@ -22,7 +22,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define pydefsdir %(pkg-config --variable=defsdir pygtk-2.0)
 
 %description
-Library for easely creating diagrams.
+Library for easy diagrams creation.
 
 %description -l pl
 Biblioteka do prostego tworzenia diagramów.
