@@ -10,7 +10,7 @@ Version:	0.10.0
 Release:	1
 License:	GPL
 Group:		X11/Libraries
-Source0:	http://dl.sourceforge.net/sourceforge/%{name}/%{src_name}-%{version}.tar.gz
+Source0:	http://dl.sourceforge.net/diacanvas/%{src_name}-%{version}.tar.gz
 # Source0-md5:	26087d205ad833341fcfab047d70837f
 Patch0:		%{name}-no_check.patch
 URL:		http://diacanvas.sourceforge.net/
@@ -33,7 +33,7 @@ Biblioteka do prostego tworzenia diagramów.
 Summary:	Diacanvas header files and development documentation
 Summary(pl):	Pliki nag³ówkowe i dokumentacja biblioteki Diacanvas
 Group:		X11/Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Diacanvas header files and development documentation.
@@ -45,7 +45,7 @@ Pliki nag³ówkowe i dokumentacja biblioteki Diacanvas.
 Summary:	Diacanvas static libraries
 Summary(pl):	Biblioteki statyczne Diacanvas
 Group:		X11/Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Diacanvas static libraries.
@@ -57,7 +57,7 @@ Biblioteki statyczne Diacanvas.
 Summary:	Diacanvas Python bindings
 Summary(pl):	Wi±zania jêzyka Python do biblioteki Diacanvas
 Group:		Libraries/Python
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 Requires:	python-pygtk-gtk >= 1.99.16
 
 %description -n python-%{name}
@@ -70,7 +70,7 @@ Wi±zania jêzyka Python do biblioteki Diacanvas.
 Summary:	Diacanvas Python bindings development files
 Summary(pl):	Pliki dla programistów wi±zañ jêzyka Python do biblioteki Diacanvas
 Group:		Development/Languages/Python
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description -n python-%{name}-devel
 Diacanvas Python bindings development files.
@@ -102,22 +102,27 @@ install -d $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+rm -f $RPM_BUILD_ROOT%{py_sitedir}/%{name}/*.la
+
 %find_lang %{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post	-p /sbin/ldconfig
+%postun	-p /sbin/ldconfig
+
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc README ChangeLog TODO NEWS AUTHORS
-%attr(755,root,root) %{_libdir}/*.so.*
+%attr(755,root,root) %{_libdir}/*.so.*.*.*
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/*.so
 %{_libdir}/*.la
 %{_includedir}/diacanvas
-%{_datadir}/gtk-doc/html/%{src_name}
+%{_gtkdocdir}/%{src_name}
 %{_pkgconfigdir}/*
 
 %files static
@@ -128,7 +133,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %dir %{py_sitedir}/%{name}
 %attr(755,root,root) %{py_sitedir}/%{name}/*.so
-%{py_sitedir}/%{name}/*.la
 %{py_sitedir}/%{name}/*.py[co]
 
 %files -n python-%{name}-devel
