@@ -1,5 +1,4 @@
 
-%include	/usr/lib/rpm/macros.python
 
 %define src_name diacanvas2
 
