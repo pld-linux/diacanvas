@@ -1,0 +1,27 @@
+diff -Nur diacanvas2-0.8.0.orig/acinclude.m4 diacanvas2-0.8.0/acinclude.m4
+--- diacanvas2-0.8.0.orig/acinclude.m4	Tue Sep  3 13:10:45 2002
++++ diacanvas2-0.8.0/acinclude.m4	Sun Sep 22 19:04:37 2002
+@@ -36,7 +36,7 @@
+   dnl $prefix/lib/site-python in 1.4 to $prefix/lib/python1.5/site-packages
+   dnl in 1.5, and I don't want to maintain that logic.
+ 
+-  AC_PATH_PROG(PYTHON, python2.2 python2 python)
++  AC_PATH_PROGS(PYTHON, python2.2 python2 python)
+ 
+   dnl should we do the version check?
+   AC_MSG_CHECKING(if Python version >= 2.2)
+diff -Nur diacanvas2-0.8.0.orig/configure.in diacanvas2-0.8.0/configure.in
+--- diacanvas2-0.8.0.orig/configure.in	Tue Sep  3 14:02:36 2002
++++ diacanvas2-0.8.0/configure.in	Sun Sep 22 19:08:19 2002
+@@ -195,9 +195,10 @@
+ AC_MSG_CHECKING(for gnome-python (for GnomeCanvas))
+ prog="
+ import sys
++import imp
+ try:
+ 	#import gnome
+-	import gnome.canvas
++	imp.find_module('gnome/canvas')
+ except ImportError:
+ 	sys.exit(1)
+ sys.exit(0)"
