@@ -12,6 +12,7 @@ License:	GPL
 Group:		X11/Libraries
 Source0:	http://dl.sourceforge.net/sourceforge/%{name}/%{src_name}-%{version}.tar.gz
 # Source0-md5:	26087d205ad833341fcfab047d70837f
+Patch0:		%{name}-no_check.patch
 URL:		http://diacanvas.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -79,6 +80,7 @@ Pliki dla programistów wi±zañ jêzyka Python do biblioteki Diacanvas.
 
 %prep
 %setup -q -n %{src_name}-%{version}
+%patch0 -p1
 
 %build
 rm -f missing
