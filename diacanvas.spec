@@ -95,14 +95,17 @@ Pliki dla programistów wi±zañ jêzyka Python do biblioteki Diacanvas.
 	--enable-python \
 	--with-html-dir=%{_gtkdocdir}
 
-%{__make}
+%{__make} \
+	pythondir=%{py_sitedir} \
+	pyexecdir=%{py_sitedir}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
+	DESTDIR=$RPM_BUILD_ROOT \
+	pythondir=%{py_sitedir} \
+	pyexecdir=%{py_sitedir}
 
 rm -f $RPM_BUILD_ROOT%{py_sitedir}/%{name}/*.{la,a}
 
