@@ -6,12 +6,11 @@
 Summary:	Library for easely creating diagrams
 Summary(pl):	Biblioteka do prostego tworzenia diagramów
 Name:		diacanvas
-Version:	0.9.0
-Release:	0.1
+Version:	0.9.1
+Release:	1
 License:	GPL
 Group:		X11/Libraries
 Source0:	http://telia.dl.sourceforge.net/sourceforge/diacanvas/%{src_name}-%{version}.tar.gz
-Patch0:		%{name}-demos.patch
 URL:		http://diacanvas.sourceforge.net
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -78,7 +77,6 @@ Pliki dla programistów wi±zañ jêzyka Python do biblioteki Diacanvas.
 
 %prep
 %setup -q -n %{src_name}-%{version}
-%patch0 -p1
 
 %build
 rm -f missing
@@ -87,6 +85,7 @@ rm -f missing
 %{__autoconf}
 %{__automake}
 %configure \
+	--enable-static \
 	--enable-gnome-print \
 	--enable-python
 
