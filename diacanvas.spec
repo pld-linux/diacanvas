@@ -18,7 +18,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libgnomeprintui-devel >= 1.116.0
 BuildRequires:	libtool
-BuildRequires:	python-gnome-devel >= 1.99.13 
+BuildRequires:	python-gnome-devel >= 1.99.13
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define pydefsdir %(pkg-config --variable=defsdir pygtk-2.0)
