@@ -13,8 +13,11 @@ Group:		X11/Libraries
 Source0:	%{src_name}-%{version}.tar.gz
 Patch0:		%{name}-ac.patch
 URL:		http://diacanvas.sourceforge.net
-BuildRequires:	python-gnome-devel >= 1.99.13 
+BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	libgnomeprintui-devel >= 1.116.0
+BuildRequires:	libtool
+BuildRequires:	python-gnome-devel >= 1.99.13 
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define pydefsdir %(pkg-config --variable=defsdir pygtk-2.0)
@@ -79,8 +82,8 @@ Pliki dla programistów wi±zañ jêzyka Python do biblioteki Diacanvas.
 
 %build
 rm -f missing
-libtoolize --copy --force
-aclocal
+%{__libtoolize}
+%{__aclocal}
 %{__autoconf}
 %{__automake}
 %configure \
