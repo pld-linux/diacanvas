@@ -13,6 +13,7 @@ Source0:	http://dl.sourceforge.net/diacanvas/%{src_name}-%{version}.tar.gz
 # Source0-md5:	f00a9c023f51ffbaecc03f5f08d0d681
 Patch0:		%{name}-no_check.patch
 Patch1:		%{name}-text-stroke.patch
+Patch2:		%{name}-func.patch
 URL:		http://diacanvas.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -84,6 +85,7 @@ Pliki dla programistów wi±zañ jêzyka Python do biblioteki Diacanvas.
 %setup -q -n %{src_name}-%{version}
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 glib-gettextize -f
