@@ -11,6 +11,7 @@ Release:	1
 License:	GPL
 Group:		X11/Libraries
 Source0:	http://telia.dl.sourceforge.net/sourceforge/diacanvas/%{src_name}-%{version}.tar.gz
+# Source0-md5:	4142c787f582311d01ef6ec8c4fb3c13
 URL:		http://diacanvas.sourceforge.net
 BuildRequires:	autoconf
 BuildRequires:	automake
