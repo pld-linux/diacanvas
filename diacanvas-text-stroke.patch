@@ -4,8 +4,8 @@
  	writer (data, "<g transform=\"matrix(%f %f %f %f %f %f)\""
  		      " style=\"font-size:%dpx;font-family:%s;font-style:%s;"
  		      "font-stretch:%s;font-weight:%d;font-variant:%s;"
--		      "stroke:#%06x;opacity:%f:text-anchor:%s\">",
-+		      "stroke:none;opacity:%f:text-anchor:%s\">",
+-		      "stroke:#%06x;opacity:%f;text-anchor:%s\">",
++		      "stroke:none;opacity:%f;text-anchor:%s\">",
  		text->affine[0], text->affine[1], text->affine[2],
  		text->affine[3], text->affine[4], text->affine[5],
  		pango_font_description_get_size (font_desc) / PANGO_SCALE,
