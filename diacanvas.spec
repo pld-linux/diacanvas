@@ -10,7 +10,7 @@ Version:	0.9.2
 Release:	2
 License:	GPL
 Group:		X11/Libraries
-Source0:	http://telia.dl.sourceforge.net/sourceforge/diacanvas/%{src_name}-%{version}.tar.gz
+Source0:	http://dl.sourceforge.net/sourceforge/%{name}/%{src_name}-%{version}.tar.gz
 # Source0-md5:	4142c787f582311d01ef6ec8c4fb3c13
 Patch0:		%{name}-python.patch
 URL:		http://diacanvas.sourceforge.net
