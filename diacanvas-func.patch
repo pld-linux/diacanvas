@@ -1,0 +1,26 @@
+--- diacanvas2-0.14.0/diacanvas/dia-export-print.c.orig	2004-10-25 18:10:52.000000000 +0200
++++ diacanvas2-0.14.0/diacanvas/dia-export-print.c	2004-10-25 18:18:36.863767112 +0200
+@@ -310,10 +310,10 @@
+ 			print_image ((DiaShapeImage *)shape, context);
+ 			break;
+ 		case DIA_SHAPE_WIDGET:
+-			g_message (__FUNCTION__": Widget not yet implemented.");
++			g_message ("%s: Widget not yet implemented.", __func__);
+ 			break;
+ 		case DIA_SHAPE_CLIP:
+-			g_message (__FUNCTION__": Clip not yet implemented.");
++			g_message ("%s: Clip not yet implemented.", __func__);
+ 			break;
+ 		default:
+ 			g_message ("Shape with type %d is not (yet) implemented", shape->type);
+--- diacanvas2-0.14.0/demos/dia-textbox.c.orig	2004-10-25 18:25:30.386902040 +0200
++++ diacanvas2-0.14.0/demos/dia-textbox.c	2004-10-25 18:25:51.859637688 +0200
+@@ -140,7 +140,7 @@
+ 	textbox->text = dia_canvas_item_create (DIA_TYPE_CANVAS_TEXT, NULL);
+ 	dia_canvas_item_set_child_of (textbox->text, DIA_CANVAS_ITEM (textbox));
+ 	
+-	g_message (__FUNCTION__": %p %p %p %p %p", textbox, textbox->text, textbox->text->parent, DIA_CANVAS_ITEM (textbox)->canvas, textbox->text->canvas);
++	g_message ("%s: %p %p %p %p %p", textbox, textbox->text, textbox->text->parent, DIA_CANVAS_ITEM (textbox)->canvas, textbox->text->canvas, __func__);
+ }
+ 
+ static void
