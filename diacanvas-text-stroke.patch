@@ -1,0 +1,19 @@
+--- diacanvas2-0.13.0/diacanvas/dia-export-svg.c.orig	2004-06-13 23:29:42.000000000 +0200
++++ diacanvas2-0.13.0/diacanvas/dia-export-svg.c	2004-06-13 23:35:22.000000000 +0200
+@@ -317,7 +317,7 @@
+ 	writer (data, "<g transform=\"matrix(%f %f %f %f %f %f)\""
+ 		      " style=\"font-size:%dpx;font-family:%s;font-style:%s;"
+ 		      "font-stretch:%s;font-weight:%d;font-variant:%s;"
+-		      "stroke:#%06x;opacity:%f:text-anchor:%s\">",
++		      "stroke:none;opacity:%f:text-anchor:%s\">",
+ 		text->affine[0], text->affine[1], text->affine[2],
+ 		text->affine[3], text->affine[4], text->affine[5],
+ 		pango_font_description_get_size (font_desc) / PANGO_SCALE,
+@@ -326,7 +326,6 @@
+ 		svg_stretch[pango_font_description_get_stretch (font_desc)],
+ 		pango_font_description_get_weight (font_desc),
+ 		svg_variant[pango_font_description_get_variant (font_desc)],
+-		shape->color >> 8,
+ 		((gdouble) DIA_COLOR_ALPHA (shape->color)) / 255.0,
+ 		text_anchor);
+ 
