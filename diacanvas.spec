@@ -17,6 +17,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libgnomeprintui-devel >= 2.2.0
 BuildRequires:	libtool
+BuildRequires:	pkgconfig
 # for canvas.defs
 BuildRequires:	python-gnome-devel >= 2.0.0
 BuildRequires:	python-pygtk-devel >= 1:2.0.0
