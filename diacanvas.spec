@@ -7,7 +7,7 @@ Summary:	Library for easely creating diagrams
 Summary(pl):	Biblioteka do prostego tworzenia diagramów
 Name:		diacanvas
 Version:	0.10.0
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Libraries
 Source0:	http://dl.sourceforge.net/diacanvas/%{src_name}-%{version}.tar.gz
@@ -16,9 +16,11 @@ Patch0:		%{name}-no_check.patch
 URL:		http://diacanvas.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	libgnomeprintui-devel >= 1.116.0
+BuildRequires:	libgnomeprintui-devel >= 2.2.0
 BuildRequires:	libtool
-BuildRequires:	python-gnome-devel >= 1.99.13
+# for canvas.defs
+BuildRequires:	python-gnome-devel >= 2.0.0
+BuildRequires:	python-pygtk-devel >= 1:2.0.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define pydefsdir %(pkg-config --variable=defsdir pygtk-2.0)
@@ -83,7 +85,6 @@ Pliki dla programistów wi±zañ jêzyka Python do biblioteki Diacanvas.
 %patch0 -p1
 
 %build
-rm -f missing
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
@@ -91,7 +92,8 @@ rm -f missing
 %configure \
 	--enable-static \
 	--enable-gnome-print \
-	--enable-python
+	--enable-python \
+	--with-html-dir=%{_gtkdocdir}
 
 %{__make}
 
@@ -102,7 +104,7 @@ install -d $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-rm -f $RPM_BUILD_ROOT%{py_sitedir}/%{name}/*.la
+rm -f $RPM_BUILD_ROOT%{py_sitedir}/%{name}/*.{la,a}
 
 %find_lang %{name}
 
