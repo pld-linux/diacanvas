@@ -122,7 +122,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/*.so
 %{_libdir}/*.la
 %{_includedir}/diacanvas
-%{_gtkdocdir}/%{src_name}
+%{_gtkdocdir}/%{src_name}/*
 %{_pkgconfigdir}/*
 
 %files static
