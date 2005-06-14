@@ -15,6 +15,7 @@ Patch1:		%{name}-text-stroke.patch
 URL:		http://diacanvas.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	gettext-devel
 BuildRequires:	libgnomeprintui-devel >= 2.2.0
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
