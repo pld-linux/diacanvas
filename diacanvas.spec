@@ -4,18 +4,13 @@
 Summary:	Library for easely creating diagrams
 Summary(pl):	Biblioteka do prostego tworzenia diagramów
 Name:		diacanvas
-Version:	0.14.2
-Release:	3
+Version:	0.14.3
+Release:	1
 License:	GPL
 Group:		X11/Libraries
 Source0:	http://dl.sourceforge.net/diacanvas/%{src_name}-%{version}.tar.gz
-# Source0-md5:	bd78fff277279abb003bb271baef3788
-Patch0:		%{name}-no_check.patch
-Patch1:		%{name}-text-stroke.patch
+# Source0-md5:	cc1dc41aff8084cb9e4514a0edbaf8b4
 URL:		http://diacanvas.sourceforge.net/
-BuildRequires:	autoconf
-BuildRequires:	automake
-BuildRequires:	gettext-devel
 BuildRequires:	libgnomeprintui-devel >= 2.2.0
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
@@ -84,33 +79,26 @@ Pliki dla programistów wi±zañ jêzyka Python do biblioteki Diacanvas.
 
 %prep
 %setup -q -n %{src_name}-%{version}
-%patch0 -p1
-%patch1 -p1
 
 %build
-glib-gettextize -f
-%{__libtoolize}
-%{__aclocal}
-%{__autoconf}
-%{__automake}
 %configure \
 	--enable-static \
 	--enable-gnome-print \
 	--enable-python \
+	--enable-gtk-doc \
 	--with-html-dir=%{_gtkdocdir}
 
-%{__make} \
-	pythondir=%{py_sitedir} \
-	pyexecdir=%{py_sitedir}
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT \
-	pythondir=%{py_sitedir} \
-	pyexecdir=%{py_sitedir}
+	DESTDIR=$RPM_BUILD_ROOT
 
+%py_comp $RPM_BUILD_ROOT%{py_sitedir}
+%py_ocomp $RPM_BUILD_ROOT%{py_sitedir}
+%py_postclean
 rm -f $RPM_BUILD_ROOT%{py_sitedir}/%{name}/*.{la,a}
 
 %find_lang %{name}
