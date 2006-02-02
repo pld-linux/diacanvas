@@ -1,3 +1,7 @@
+#
+# Conditional build:
+%bcond_without  apidocs     # disable gtk-doc
+%bcond_without  static_libs # don't build static library
 
 %define		src_name	diacanvas2
 
@@ -11,6 +15,7 @@ Group:		X11/Libraries
 Source0:	http://dl.sourceforge.net/diacanvas/%{src_name}-%{version}.tar.gz
 # Source0-md5:	cc1dc41aff8084cb9e4514a0edbaf8b4
 URL:		http://diacanvas.sourceforge.net/
+%{?with_apidocs:BuildRequires:  gtk-doc >= 1.0}
 BuildRequires:	libgnomeprintui-devel >= 2.2.0
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
@@ -51,6 +56,14 @@ Diacanvas static libraries.
 %description static -l pl
 Biblioteki statyczne Diacanvas.
 
+%package apidocs
+Summary:    Diacanvas API documentation
+Group:      Documentation
+Requires:   gtk-doc-common
+
+%description apidocs
+Diacanvas API documentation.
+
 %package -n python-%{name}
 Summary:	Diacanvas Python bindings
 Summary(pl):	Wi±zania jêzyka Python do biblioteki Diacanvas
@@ -82,11 +95,11 @@ Pliki dla programistów wi±zañ jêzyka Python do biblioteki Diacanvas.
 
 %build
 %configure \
-	--enable-static \
+    --%{?with_static_libs:en}%{!?with_static_libs:dis}able-static \
 	--enable-gnome-print \
 	--enable-python \
-	--enable-gtk-doc \
-	--with-html-dir=%{_gtkdocdir}
+    --%{?with_apidocs:en}%{!?with_apidocs:dis}able-gtk-doc \
+    %{?with_apidocs:--with-html-dir=%{_gtkdocdir}}
 
 %{__make}
 
@@ -119,12 +132,19 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/*.so
 %{_libdir}/*.la
 %{_includedir}/diacanvas
-%{_gtkdocdir}/%{src_name}
 %{_pkgconfigdir}/*
 
+%if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/*.a
+%{_libdir}/lib*.a
+%endif
+
+%if %{with apidocs}
+%files apidocs
+%defattr(644,root,root,755)
+%{_gtkdocdir}/*
+%endif
 
 %files -n python-%{name}
 %defattr(644,root,root,755)
