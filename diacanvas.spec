@@ -57,12 +57,16 @@ Diacanvas static libraries.
 Biblioteki statyczne Diacanvas.
 
 %package apidocs
-Summary:    Diacanvas API documentation
-Group:      Documentation
-Requires:   gtk-doc-common
+Summary:	Diacanvas API documentation
+Summary(pl):	Dokumentacja API Diacanvas
+Group:		Documentation
+Requires:	gtk-doc-common
 
 %description apidocs
 Diacanvas API documentation.
+
+%description apidocs -l pl
+Dokumentacja API Diacanvas.
 
 %package -n python-%{name}
 Summary:	Diacanvas Python bindings
