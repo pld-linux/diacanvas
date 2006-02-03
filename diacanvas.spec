@@ -99,11 +99,11 @@ Pliki dla programistów wi±zañ jêzyka Python do biblioteki Diacanvas.
 
 %build
 %configure \
-    --%{?with_static_libs:en}%{!?with_static_libs:dis}able-static \
+	--%{?with_static_libs:en}%{!?with_static_libs:dis}able-static \
 	--enable-gnome-print \
 	--enable-python \
-    --%{?with_apidocs:en}%{!?with_apidocs:dis}able-gtk-doc \
-    %{?with_apidocs:--with-html-dir=%{_gtkdocdir}}
+	--%{?with_apidocs:en}%{!?with_apidocs:dis}able-gtk-doc \
+	%{?with_apidocs:--with-html-dir=%{_gtkdocdir}}
 
 %{__make}
 
