@@ -8,12 +8,12 @@
 Summary:	Library for easely creating diagrams
 Summary(pl):	Biblioteka do prostego tworzenia diagramów
 Name:		diacanvas
-Version:	0.14.3
+Version:	0.14.4
 Release:	1
 License:	GPL
 Group:		X11/Libraries
 Source0:	http://dl.sourceforge.net/diacanvas/%{src_name}-%{version}.tar.gz
-# Source0-md5:	cc1dc41aff8084cb9e4514a0edbaf8b4
+# Source0-md5:	b3db6c961de3023489a4d2419dab89bd
 URL:		http://diacanvas.sourceforge.net/
 %{?with_apidocs:BuildRequires:  gtk-doc >= 1.0}
 BuildRequires:	libgnomeprintui-devel >= 2.2.0
