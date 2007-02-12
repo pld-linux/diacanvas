@@ -6,7 +6,7 @@
 %define		src_name	diacanvas2
 
 Summary:	Library for easely creating diagrams
-Summary(pl.UTF-8):   Biblioteka do prostego tworzenia diagramów
+Summary(pl.UTF-8):	Biblioteka do prostego tworzenia diagramów
 Name:		diacanvas
 Version:	0.14.4
 Release:	1
@@ -34,7 +34,7 @@ Biblioteka do prostego tworzenia diagramów.
 
 %package devel
 Summary:	Diacanvas header files and development documentation
-Summary(pl.UTF-8):   Pliki nagłówkowe i dokumentacja biblioteki Diacanvas
+Summary(pl.UTF-8):	Pliki nagłówkowe i dokumentacja biblioteki Diacanvas
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -46,7 +46,7 @@ Pliki nagłówkowe i dokumentacja biblioteki Diacanvas.
 
 %package static
 Summary:	Diacanvas static libraries
-Summary(pl.UTF-8):   Biblioteki statyczne Diacanvas
+Summary(pl.UTF-8):	Biblioteki statyczne Diacanvas
 Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
@@ -58,7 +58,7 @@ Biblioteki statyczne Diacanvas.
 
 %package apidocs
 Summary:	Diacanvas API documentation
-Summary(pl.UTF-8):   Dokumentacja API Diacanvas
+Summary(pl.UTF-8):	Dokumentacja API Diacanvas
 Group:		Documentation
 Requires:	gtk-doc-common
 
@@ -70,7 +70,7 @@ Dokumentacja API Diacanvas.
 
 %package -n python-%{name}
 Summary:	Diacanvas Python bindings
-Summary(pl.UTF-8):   Wiązania języka Python do biblioteki Diacanvas
+Summary(pl.UTF-8):	Wiązania języka Python do biblioteki Diacanvas
 Group:		Libraries/Python
 Requires:	%{name} = %{version}-%{release}
 %pyrequires_eq	python-libs
@@ -84,7 +84,7 @@ Wiązania języka Python do biblioteki Diacanvas.
 
 %package -n python-%{name}-devel
 Summary:	Diacanvas Python bindings development files
-Summary(pl.UTF-8):   Pliki dla programistów wiązań języka Python do biblioteki Diacanvas
+Summary(pl.UTF-8):	Pliki dla programistów wiązań języka Python do biblioteki Diacanvas
 Group:		Development/Languages/Python
 Requires:	%{name} = %{version}-%{release}
 
