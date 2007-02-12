@@ -6,7 +6,7 @@
 %define		src_name	diacanvas2
 
 Summary:	Library for easely creating diagrams
-Summary(pl):	Biblioteka do prostego tworzenia diagramów
+Summary(pl.UTF-8):   Biblioteka do prostego tworzenia diagramÃ³w
 Name:		diacanvas
 Version:	0.14.4
 Release:	1
@@ -29,48 +29,48 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 Library for easy diagrams creation.
 
-%description -l pl
-Biblioteka do prostego tworzenia diagramów.
+%description -l pl.UTF-8
+Biblioteka do prostego tworzenia diagramÃ³w.
 
 %package devel
 Summary:	Diacanvas header files and development documentation
-Summary(pl):	Pliki nag³ówkowe i dokumentacja biblioteki Diacanvas
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe i dokumentacja biblioteki Diacanvas
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Diacanvas header files and development documentation.
 
-%description devel -l pl
-Pliki nag³ówkowe i dokumentacja biblioteki Diacanvas.
+%description devel -l pl.UTF-8
+Pliki nagÅ‚Ã³wkowe i dokumentacja biblioteki Diacanvas.
 
 %package static
 Summary:	Diacanvas static libraries
-Summary(pl):	Biblioteki statyczne Diacanvas
+Summary(pl.UTF-8):   Biblioteki statyczne Diacanvas
 Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Diacanvas static libraries.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Biblioteki statyczne Diacanvas.
 
 %package apidocs
 Summary:	Diacanvas API documentation
-Summary(pl):	Dokumentacja API Diacanvas
+Summary(pl.UTF-8):   Dokumentacja API Diacanvas
 Group:		Documentation
 Requires:	gtk-doc-common
 
 %description apidocs
 Diacanvas API documentation.
 
-%description apidocs -l pl
+%description apidocs -l pl.UTF-8
 Dokumentacja API Diacanvas.
 
 %package -n python-%{name}
 Summary:	Diacanvas Python bindings
-Summary(pl):	Wi±zania jêzyka Python do biblioteki Diacanvas
+Summary(pl.UTF-8):   WiÄ…zania jÄ™zyka Python do biblioteki Diacanvas
 Group:		Libraries/Python
 Requires:	%{name} = %{version}-%{release}
 %pyrequires_eq	python-libs
@@ -79,20 +79,20 @@ Requires:	python-pygtk-gtk >= 1.99.16
 %description -n python-%{name}
 Diacanvas Python bindings.
 
-%description -n python-%{name} -l pl
-Wi±zania jêzyka Python do biblioteki Diacanvas.
+%description -n python-%{name} -l pl.UTF-8
+WiÄ…zania jÄ™zyka Python do biblioteki Diacanvas.
 
 %package -n python-%{name}-devel
 Summary:	Diacanvas Python bindings development files
-Summary(pl):	Pliki dla programistów wi±zañ jêzyka Python do biblioteki Diacanvas
+Summary(pl.UTF-8):   Pliki dla programistÃ³w wiÄ…zaÅ„ jÄ™zyka Python do biblioteki Diacanvas
 Group:		Development/Languages/Python
 Requires:	%{name} = %{version}-%{release}
 
 %description -n python-%{name}-devel
 Diacanvas Python bindings development files.
 
-%description -n python-%{name}-devel -l pl
-Pliki dla programistów wi±zañ jêzyka Python do biblioteki Diacanvas.
+%description -n python-%{name}-devel -l pl.UTF-8
+Pliki dla programistÃ³w wiÄ…zaÅ„ jÄ™zyka Python do biblioteki Diacanvas.
 
 %prep
 %setup -q -n %{src_name}-%{version}
