@@ -2,9 +2,8 @@
 # Conditional build:
 %bcond_without  apidocs     # disable gtk-doc
 %bcond_without  static_libs # don't build static library
-
+#
 %define		src_name	diacanvas2
-
 Summary:	Library for easely creating diagrams
 Summary(pl.UTF-8):	Biblioteka do prostego tworzenia diagramów
 Name:		diacanvas
@@ -14,14 +13,20 @@ License:	GPL
 Group:		X11/Libraries
 Source0:	http://dl.sourceforge.net/diacanvas/%{src_name}-%{version}.tar.gz
 # Source0-md5:	b3db6c961de3023489a4d2419dab89bd
+Patch0:		%{name}-fix.patch
 URL:		http://diacanvas.sourceforge.net/
 %{?with_apidocs:BuildRequires:  gtk-doc >= 1.0}
-BuildRequires:	libgnomeprintui-devel >= 2.2.0
-BuildRequires:	libtool
+BuildRequires:	libart_lgpl-devel >= 2.0
+BuildRequires:	libgnomecanvas-devel >= 2.0.0
+BuildRequires:	libgnomeprint-devel >= 2.2.0
+# libgnomeprintui-devel >= 2.2.0  used for demo only
 BuildRequires:	pkgconfig
 # for canvas.defs
 BuildRequires:	python-gnome-devel >= 2.0.0
 BuildRequires:	python-pygtk-devel >= 1:2.0.0
+Requires:	libart_lgpl >= 2.0
+Requires:	libgnomecanvas >= 2.0.0
+Requires:	libgnomeprint >= 2.2.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		pydefsdir	%(pkg-config --variable=defsdir pygtk-2.0)
@@ -37,6 +42,9 @@ Summary:	Diacanvas header files and development documentation
 Summary(pl.UTF-8):	Pliki nagłówkowe i dokumentacja biblioteki Diacanvas
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	libart_lgpl-devel >= 2.0
+Requires:	libgnomecanvas-devel >= 2.0.0
+Requires:	libgnomeprint-devel >= 2.2.0
 
 %description devel
 Diacanvas header files and development documentation.
@@ -96,6 +104,7 @@ Pliki dla programistów wiązań języka Python do biblioteki Diacanvas.
 
 %prep
 %setup -q -n %{src_name}-%{version}
+%patch0 -p1
 
 %build
 %configure \
@@ -129,33 +138,33 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc README ChangeLog TODO NEWS AUTHORS
-%attr(755,root,root) %{_libdir}/*.so.*.*.*
+%attr(755,root,root) %{_libdir}/libdiacanvas2.so.*.*.*
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/*.so
-%{_libdir}/*.la
+%attr(755,root,root) %{_libdir}/libdiacanvas2.so
+%{_libdir}/libdiacanvas2.la
 %{_includedir}/diacanvas
-%{_pkgconfigdir}/*
+%{_pkgconfigdir}/diacanvas2.pc
 
 %if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%{_libdir}/libdiacanvas2.a
 %endif
 
 %if %{with apidocs}
 %files apidocs
 %defattr(644,root,root,755)
-%{_gtkdocdir}/*
+%{_gtkdocdir}/diacanvas2
 %endif
 
 %files -n python-%{name}
 %defattr(644,root,root,755)
 %dir %{py_sitedir}/%{name}
-%attr(755,root,root) %{py_sitedir}/%{name}/*.so
+%attr(755,root,root) %{py_sitedir}/%{name}/*module.so
 %{py_sitedir}/%{name}/*.py[co]
 
 %files -n python-%{name}-devel
 %defattr(644,root,root,755)
-%{pydefsdir}/*
+%{pydefsdir}/dia*.defs
