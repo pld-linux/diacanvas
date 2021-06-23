@@ -195,5 +195,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n python-%{name}-devel
 %defattr(644,root,root,755)
-%{pydefsdir}/dia*.defs
+%{pydefsdir}/dia-boxed.defs
+%{pydefsdir}/diacanvas.defs
+%{pydefsdir}/diageometry.defs
+%{pydefsdir}/diashape.defs
+%{pydefsdir}/diaview.defs
 %endif
