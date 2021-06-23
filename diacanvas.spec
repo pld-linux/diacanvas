@@ -121,6 +121,7 @@ Pliki dla programistów wiązań języka Python do biblioteki Diacanvas.
 %patch2 -p1
 
 %build
+%{__gtkdocize}
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
