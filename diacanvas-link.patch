@@ -1,0 +1,11 @@
+--- diacanvas2-0.14.4/diacanvas/Makefile.am.orig	2006-01-03 13:51:06.000000000 +0100
++++ diacanvas2-0.14.4/diacanvas/Makefile.am	2021-06-23 17:14:13.009629728 +0200
+@@ -114,7 +114,7 @@
+ libdiacanvas2include_HEADERS = $(all_headers) diatypebuiltins.h diamarshal.h dia-features.h
+ libdiacanvas2_la_SOURCES = $(all_sources) 
+ libdiacanvas2_la_LDFLAGS = $(no_undefined)
+-libdiacanvas2_la_LIBADD = $(DIACANVAS2_LIBS) 
++libdiacanvas2_la_LIBADD = $(DIACANVAS2_LIBS) -lm
+ 
+ # Do the unit tests!
+ test: all

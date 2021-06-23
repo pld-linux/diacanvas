@@ -1,7 +1,8 @@
 #
 # Conditional build:
-%bcond_without  apidocs     # disable gtk-doc
-%bcond_without  static_libs # don't build static library
+%bcond_without	apidocs		# gtk-doc based API documentation
+%bcond_without	python		# Python (2.x) binding
+%bcond_without	static_libs	# static library
 #
 %define		src_name	diacanvas2
 Summary:	Library for easely creating diagrams
@@ -11,19 +12,28 @@ Version:	0.14.4
 Release:	2
 License:	LGPL v2+
 Group:		X11/Libraries
-Source0:	http://dl.sourceforge.net/diacanvas/%{src_name}-%{version}.tar.gz
+Source0:	https://downloads.sourceforge.net/diacanvas/%{src_name}-%{version}.tar.gz
 # Source0-md5:	b3db6c961de3023489a4d2419dab89bd
 Patch0:		%{name}-fix.patch
+Patch1:		%{name}-glib.patch
+Patch2:		%{name}-link.patch
 URL:		http://diacanvas.sourceforge.net/
-%{?with_apidocs:BuildRequires:  gtk-doc >= 1.0}
+BuildRequires:	autoconf
+BuildRequires:	automake
+%{?with_apidocs:BuildRequires:	gtk-doc >= 1.0}
 BuildRequires:	libart_lgpl-devel >= 2.0
 BuildRequires:	libgnomecanvas-devel >= 2.0.0
-BuildRequires:	libgnomeprint-devel >= 2.2.0
 # libgnomeprintui-devel >= 2.2.0  used for demo only
+BuildRequires:	libgnomeprint-devel >= 2.2.0
+BuildRequires:	libtool
 BuildRequires:	pkgconfig
+%if %{with python}
 # for canvas.defs
 BuildRequires:	python-gnome-devel >= 2.0.0
 BuildRequires:	python-pygtk-devel >= 1:2.0.0
+%endif
+BuildRequires:	rpm-build >= 4.6
+BuildRequires:	rpmbuild(macros) >= 1.219
 Requires:	libart_lgpl >= 2.0
 Requires:	libgnomecanvas >= 2.0.0
 Requires:	libgnomeprint >= 2.2.0
@@ -69,6 +79,7 @@ Summary:	Diacanvas API documentation
 Summary(pl.UTF-8):	Dokumentacja API Diacanvas
 Group:		Documentation
 Requires:	gtk-doc-common
+BuildArch:	noarch
 
 %description apidocs
 Diacanvas API documentation.
@@ -106,13 +117,20 @@ Pliki dla programistów wiązań języka Python do biblioteki Diacanvas.
 %prep
 %setup -q -n %{src_name}-%{version}
 %patch0 -p1
+%patch1 -p1
+%patch2 -p1
 
 %build
+%{__libtoolize}
+%{__aclocal}
+%{__autoconf}
+%{__autoheader}
+%{__automake}
 %configure \
-	--%{?with_static_libs:en}%{!?with_static_libs:dis}able-static \
+	--enable-static%{!?with_static_libs:=no} \
 	--enable-gnome-print \
-	--enable-python \
-	--%{?with_apidocs:en}%{!?with_apidocs:dis}able-gtk-doc \
+	--enable-gtk-doc%{!?with_apidocs:=no} \
+	%{?with_python:--enable-python} \
 	%{?with_apidocs:--with-html-dir=%{_gtkdocdir}}
 
 %{__make}
@@ -123,10 +141,17 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libdiacanvas2.la
+
+%if %{with python}
 %py_comp $RPM_BUILD_ROOT%{py_sitedir}
 %py_ocomp $RPM_BUILD_ROOT%{py_sitedir}
 %py_postclean
-rm -f $RPM_BUILD_ROOT%{py_sitedir}/%{name}/*.{la,a}
+%{__rm} $RPM_BUILD_ROOT%{py_sitedir}/%{name}/*.la
+%if %{with static_libs}
+%{__rm} $RPM_BUILD_ROOT%{py_sitedir}/%{name}/*.a
+%endif
+%endif
 
 %find_lang %{name}
 
@@ -140,11 +165,11 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README ChangeLog TODO NEWS AUTHORS
 %attr(755,root,root) %{_libdir}/libdiacanvas2.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libdiacanvas2.so.0
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libdiacanvas2.so
-%{_libdir}/libdiacanvas2.la
 %{_includedir}/diacanvas
 %{_pkgconfigdir}/diacanvas2.pc
 
@@ -160,6 +185,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_gtkdocdir}/diacanvas2
 %endif
 
+%if %{with python}
 %files -n python-%{name}
 %defattr(644,root,root,755)
 %dir %{py_sitedir}/%{name}
@@ -169,3 +195,4 @@ rm -rf $RPM_BUILD_ROOT
 %files -n python-%{name}-devel
 %defattr(644,root,root,755)
 %{pydefsdir}/dia*.defs
+%endif
